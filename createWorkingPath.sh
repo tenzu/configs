@@ -7,4 +7,4 @@ sudo mkdir $userPath
 #sudo chown $userName:$userGroup $userPath
 sudo chown $userName:students $userPath
 #sudo chown $userName:profs $userPath
-sudo chmod 799 $userPath
+sudo chmod 700 $userPath
