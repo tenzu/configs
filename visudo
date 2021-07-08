@@ -1,0 +1,3 @@
+# sudo ln -s /home/huangxin/shells/ /HX_shells
+
+1018205020      ALL=(root)      /HX_shells/psLong, /HX_shells/killThemAll
