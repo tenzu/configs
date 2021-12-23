@@ -1,0 +1,1 @@
+lastlog | grep $1
