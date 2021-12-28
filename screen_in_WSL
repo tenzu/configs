@@ -1,0 +1,4 @@
+1. mkdir ~/.screen
+2. chmod 700 ~/.screen
+3. add the following to .zshrc or .bashrc:
+   export SCREENDIR=/home/USERNAME/.screen
