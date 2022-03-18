@@ -5,7 +5,7 @@ date
 for user in $list
 do
         cores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
-        if [ $((${cores//.*/+1})) -gt 1000 ];then
+        if [ $((${cores//.*/+1})) -gt 1050 ];then
                 echo "$user uses $((${cores//.*/+1})) cpu cores!"
         fi
 done
