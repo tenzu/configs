@@ -1,4 +1,4 @@
 #!/bin/bash
 date
-echo -e "USER\t\t%CPU"
+echo -e "USER \t \t %CPU"
 top -n 1 -b | grep $1 | awk '{print $2 "\t" $9}' | head -$2
