@@ -1,9 +1,11 @@
 #!/bin/bash
-cores=`cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l`
-list=`who | awk '{print $1}' | sort | uniq`
+totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
+list=$(who | awk '{print $1}' | sort | uniq)
+date
 for user in $list
 do
-        date
-        echo -e "USER \t \t %CPU"
-        top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$cores
+        cores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
+        if [ $((${cores//.*/+1})) -gt 1000 ];then
+                echo "$user uses $((${cores//.*/+1})) cpu cores!"
+        fi
 done
