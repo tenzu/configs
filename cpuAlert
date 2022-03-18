@@ -1,9 +1,9 @@
 #!/bin/bash
+cores=`cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l`
 list=`who | awk '{print $1}' | sort | uniq`
-echo $list
 for user in $list
 do
         date
         echo -e "USER \t \t %CPU"
-        top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -72
+        top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$cores
 done
