@@ -1,7 +1,7 @@
 #!/bin/bash
 userlist=$(who | awk '{print $1}' | sort | uniq)
 totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
-allowedCores=100
+allowedCores=1050
 
 function cpuAlert() {
         for user in $userlist
@@ -17,9 +17,11 @@ function cpuAlert() {
                 fi
         done
         }
-cpuAlert
-echo "length is: ${#cpuAlert}"
-if test ${#cpuAlert} -gt 0 ;then
-        cpuAlert >> hitTheThief.log
-        echo -e "---------------- \n END of this record." >> hitTheThief.log
+
+alert=$(cpuAlert)
+if test ${#alert} -gt 0 ;then
+        #cpuAlert >> hitTheThief.log
+        cpuAlert
+        #echo -e "---------------- \n END of this record." >> hitTheThief.log
+        echo -e "---------------- \n END of this record."
 fi
