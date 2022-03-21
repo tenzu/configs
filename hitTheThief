@@ -1,0 +1,25 @@
+#!/bin/bash
+userlist=$(who | awk '{print $1}' | sort | uniq)
+totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
+allowedCores=100
+
+function cpuAlert() {
+        for user in $userlist
+        do
+                cpuCores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
+                cpuList=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$totalCores)
+                if [ $((${cpuCores//.*/+1})) -gt $allowedCores ];then
+                        echo "----------------"
+                        date
+                        echo "$user uses about $((${cpuCores//.*/+1})) %cpu as below:"
+                        echo -e "USER \t \t %CPU"
+                        echo "$cpuList"
+                fi
+        done
+        }
+cpuAlert
+echo "length is: ${#cpuAlert}"
+if test ${#cpuAlert} -gt 0 ;then
+        cpuAlert >> hitTheThief.log
+        echo -e "---------------- \n END of this record." >> hitTheThief.log
+fi
