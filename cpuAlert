@@ -1,11 +1,11 @@
 #!/bin/bash
 totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
-userList=$(who | awk '{print $1}' | sort | uniq)
+userList=$(top -n 1 -b | awk '{print $2}' | sort | uniq)
 date
 for user in $userList
 do
         cores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
-        if [ $((${cores//.*/+1})) -gt 1050 ];then
-                echo "$user uses about $((${cores//.*/+1})) %cpu!"
+        if test $((${cores//.*/+1})) -gt 1 && test ${#user} -ge 6; then
+                echo "$user uses about $((${cores//.*/+1})) %cpu."
         fi
 done
