@@ -1,7 +1,8 @@
 #!/bin/bash
+export PATH=$PATH:/home/huangxin/shells/
 userList=$(who | awk '{print $1}' | sort | uniq)
 totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
-allowedCores=1050
+allowedCores=1024
 
 function cpuAlert() {
         for user in $userList
