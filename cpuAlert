@@ -6,6 +6,6 @@ for user in $userList
 do
         cores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
         if [ $((${cores//.*/+1})) -gt 1050 ];then
-                echo "$user uses $((${cores//.*/+1})) cpu cores!"
+                echo "$user uses about $((${cores//.*/+1})) %cpu!"
         fi
 done
