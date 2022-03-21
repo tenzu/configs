@@ -13,7 +13,7 @@ function cpuAlert() {
                 if [ $((${cpuCores//.*/+1})) -gt $allowedCores ];then
                         echo "<-------------->"
                         date
-                        echo "$user uses about $((${cpuCores//.*/+1})) %cpu as below:"
+                        echo "$user uses about $((${cpuCores//.*/+1})) %CPU as below:"
                         echo -e "USER \t \t %CPU"
                         echo "$cpuList"
                 fi
