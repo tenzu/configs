@@ -14,36 +14,36 @@ set winaltkeys=no
 set guioptions-=r 
 set guioptions-=L
 set guioptions-=b
-" "Òş²Ø¶¥²¿±êÇ©À¸"
+" "éšè—é¡¶éƒ¨æ ‡ç­¾æ "
 set showtabline=0
-" "ÉèÖÃ×ÖÌå"
+" "è®¾ç½®å­—ä½“"
 set guifont=Monaco:h13         
-syntax on    "¿ªÆôÓï·¨¸ßÁÁ"
-set background=dark        "ÉèÖÃ±³¾°É«"
+syntax on    "å¼€å¯è¯­æ³•é«˜äº®"
+set background=dark        "è®¾ç½®èƒŒæ™¯è‰²"
 colorscheme desert
-set nowrap    "ÉèÖÃ²»ÕÛĞĞ"
-" set fileformat=unix    "ÉèÖÃÒÔunixµÄ¸ñÊ½±£´æÎÄ¼ş"
-set cindent        "ÉèÖÃCÑùÊ½µÄËõ½ø¸ñÊ½"
-set tabstop=4    "ÉèÖÃtable³¤¶È"
+set nowrap    "è®¾ç½®ä¸æŠ˜è¡Œ"
+" set fileformat=unix    "è®¾ç½®ä»¥unixçš„æ ¼å¼ä¿å­˜æ–‡ä»¶"
+set cindent        "è®¾ç½®Cæ ·å¼çš„ç¼©è¿›æ ¼å¼"
+set tabstop=4    "è®¾ç½®tableé•¿åº¦"
 set expandtab
-" set noexpandtab        "²»ÔÊĞíÀ©Õ¹table"
-set shiftwidth=4        "Í¬ÉÏ"
-set showmatch    "ÏÔÊ¾Æ¥ÅäµÄÀ¨ºÅ"
-set scrolloff=5        "¾àÀë¶¥²¿ºÍµ×²¿5ĞĞ"
-set laststatus=2    "ÃüÁîĞĞÎªÁ½ĞĞ"
-set fenc=utf-8      "ÎÄ¼ş±àÂë"
+" set noexpandtab        "ä¸å…è®¸æ‰©å±•table"
+set shiftwidth=4        "åŒä¸Š"
+set showmatch    "æ˜¾ç¤ºåŒ¹é…çš„æ‹¬å·"
+set scrolloff=5        "è·ç¦»é¡¶éƒ¨å’Œåº•éƒ¨5è¡Œ"
+set laststatus=2    "å‘½ä»¤è¡Œä¸ºä¸¤è¡Œ"
+set fenc=utf-8      "æ–‡ä»¶ç¼–ç "
 set backspace=2
-set mouse=a        "ÆôÓÃÊó±ê"
+set mouse=a        "å¯ç”¨é¼ æ ‡"
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
-set ignorecase        "ºöÂÔ´óĞ¡Ğ´"
+set ignorecase        "å¿½ç•¥å¤§å°å†™"
 set incsearch
-set hlsearch        "¸ßÁÁËÑË÷Ïî"
+set hlsearch        "é«˜äº®æœç´¢é¡¹"
 set whichwrap+=<,>,h,l
 set autoread
-set cursorline        "Í»³öÏÔÊ¾µ±Ç°ĞĞ"
-set cursorcolumn        "Í»³öÏÔÊ¾µ±Ç°ÁĞ"
+set cursorline        "çªå‡ºæ˜¾ç¤ºå½“å‰è¡Œ"
+set cursorcolumn        "çªå‡ºæ˜¾ç¤ºå½“å‰åˆ—"
 set syntax=apdl
 " Lang & Encoding {{{
 set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
