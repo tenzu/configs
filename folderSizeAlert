@@ -1,8 +1,11 @@
-#!/bin/bash
-homeSize=`du -sh /home`
-echo "The home foleder size is:" ${homeSize:0:-6}
-for folder in `ls /home`;
-        do
-                folderSize=`du -sh /home/$folder/`
-                echo "The size is:" $folderSize
+#!/bin/bash         
+homeSize=$(du -sh /home)
+echo "The total /home size is:" ${homeSize:0:-6}
+userList=$(ls /home | sort)
+for user in $userList;
+        do          
+                folderSize=$(du -sh /home/$user/)
+                if [[ ${folderSize} =~ "G" ]]; then                             
+                        echo "The size is:" $folderSize
+                fi  
         done
