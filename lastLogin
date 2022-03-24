@@ -1,11 +1,19 @@
-#!/bin/bash
-i=${1-7} 
-if [[ $2 != "" && $(lastlog -t $i | grep $2) =~ $2 ]]; then
-        echo "User $(lastlog -t $i | grep $2 | awk '{print $1}') loginned in $i days."
-        lastlog -t $i | grep $2
-elif [[ $2 != "" ]]; then
-        echo "User $2 NOT loginned in $i days."
-else        
-        echo "In last $i days, users below loginned:"                           
+#!/bin/bash         
+i=${1-7}            
+if [[ $# = 0 ]]; then
+        echo "In last $i days, users below loginned:"
         lastlog -t $i | grep "[0-9]\{10\}"
+elif [[ $# = 1 ]]; then
+        echo "In last $i days, users below loginned:"
+        lastlog -t $i | grep "[0-9]\{10\}"
+elif [[ $# = 2 ]]; then
+        j=$(lastlog -t $i | grep $2 | awk '{print $1}')
+        if [[ $j =~ $2 ]]; then
+                echo "User $j loginned in $i days."
+                lastlog -t $i | grep $2
+        else        
+                echo "User $(lastlog | grep $2 | awk '{print $1}') NOT loginned in $i days."                                                                    
+        fi          
+else                
+        echo "Parameter not correct."
 fi
