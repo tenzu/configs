@@ -1,2 +1,9 @@
 #!/bin/bash
-lastlog -t $1 | grep "[0-9]\{10\}"
+if [[ $2 != "" ]]; then
+        echo "User $2 loginned in $1 days."
+        lastlog -t $1 | grep $2
+elif [[ $2 != "" ]]; then
+        echo "User $2 not loginned in $1 days."
+else
+        lastlog -t $1 | grep "[0-9]\{10\}"
+fi
