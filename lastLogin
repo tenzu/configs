@@ -1,9 +1,11 @@
 #!/bin/bash
-if [[ $2 != "" ]]; then
-        echo "User $2 loginned in $1 days."
-        lastlog -t $1 | grep $2
+i=${1-7} 
+if [[ $2 != "" && $(lastlog -t $i | grep $2) =~ $2 ]]; then
+        echo "User $2 loginned in $i days."
+        lastlog -t $i | grep $2
 elif [[ $2 != "" ]]; then
-        echo "User $2 not loginned in $1 days."
-else
-        lastlog -t $1 | grep "[0-9]\{10\}"
+        echo "User $2 NOT loginned in $i days."
+else        
+        echo "In last $i days, users below loginned:"                           
+        lastlog -t $i | grep "[0-9]\{10\}"
 fi
