@@ -1,2 +1,2 @@
 #!/bin/bash
-lastlog | grep $1
+lastlog -t $1 | grep "[0-9]\{10\}"
