@@ -4,27 +4,25 @@ userList=$(top -n 1 -b | awk '{print $2}' | sort | uniq)
 #userList=$(who | awk '{print $1}' | sort | uniq)
 totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
 allowedCores=1024
-          
+            
 function cpuAlert() {
         for user in $userList
-        do
+        do  
                 cpuCores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')
-                cpuList=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$totalCores)
+                #cpuList=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$totalCores)
                 if (( $((${cpuCores//.*/+1})) > $allowedCores && ${#user} >= 6 )); then
-                        echo "----------------"
-                        date
                         echo "$user uses about $((${cpuCores//.*/+1})) %CPU."
                         #echo "$user uses about $((${cpuCores//.*/+1})) %CPU as below:"
                         #echo -e "USER \t \t %CPU"
                         #echo "$cpuList"
                 fi  
         done
-        } 
-          
+        }   
 alert=$(cpuAlert)
-if (( ${#alert} > 0 )) ;then
+if (( ${#alert} > 0 )); then
+        echo "=== $(date) ===" >> hitTheThief.log
         cpuAlert >> hitTheThief.log
-        #cpuAlert
-        echo -e "<==============> \n END of this record." >> hitTheThief.log                                                                                                      
-        #echo -e "<==============> \n END of this record."
+        echo -e "=== END of this record. === \n" >> hitTheThief.log                                                                                                               
+else        
+        echo -e "=== $(date) === \n No alert at this time. \n" >> hitTheThief.log
 fi
