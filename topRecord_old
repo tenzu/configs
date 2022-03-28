@@ -1,7 +1,0 @@
-#!/bin/bash
-totalCores=`cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l`
-date
-echo -e "USER \t \t %CPU"
-top -n 1 -b | grep $1 | awk '{if($9!="0.0") print $2 "\t" $9}' | head -$totalCores
-echo "----------------"
-echo "total cores used: $(top -n 1 -b | grep $1 | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum}')"
