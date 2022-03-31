@@ -1,9 +1,33 @@
 #!/bin/bash
-echo -e "Account: \t$USER"
-echo -e "Applied: \t10 cores"
-echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
-#echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
-cu01=$(cat current_application.log | grep cu01 | awk '{sum += $4};END {print sum}')
-cu02=$(cat current_application.log | grep cu02 | awk '{sum += $4};END {print sum}')
-echo "cu01 has $[72-$cu01] spare cores."
-echo "cu02 has $[72-$cu02] spare cores."
+cu01=$[72-$(cat current_application.log | grep cu01 | awk '{sum += $4};END {print sum}')]
+cu02=$[72-$(cat current_application.log | grep cu02 | awk '{sum += $4};END {print sum}')]
+if (( $cu01 <= 0 && $cu02 <= 0 )); then
+        echo "There is no spare core now, please try again later."
+elif (( $cu01 > 0 && $cu02 <= 0 )); then
+        echo "Only cu01 has $cu01 spare core(s) now."
+elif (( $cu01 <= 0 && $cu02 > 0 )); then
+        echo "Only cu02 has $cu02 spare core(s) now."
+else
+        echo -e "cu01 has $cu01 spare core(s). \ncu02 has $cu02 spare core(s)."
+fi
+
+#while true
+#       read -p "Please enter node name[cu01/cu02]:" node
+#       read -p "please enter number of cores[default:10]:" coreNumber
+#       if [[ $node != "cu01" && $node != "cu02" ]]; then
+#               echo "Node name input error."
+#       elif [[ $node == "cu01" ]]; then
+#               if [[ $coreNumber <= $[72-$cu01] ]]; then
+#                       exit
+#               fi
+#       elif [[ $node == "cu02" ]]; then
+#               if [[ $coreNumber <= $[72-$cu02] ]]; then
+#                       exit
+#               fi
+#       esle
+#               echo "Number of cores input error."
+#       fi
+#echo -e "Account: \t$USER"
+#echo -e "Applied: \t$coreNumber cores"
+#echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
+##echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
