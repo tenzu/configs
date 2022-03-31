@@ -1,11 +1,12 @@
 #!/bin/bash
-cu01=$[72-$(cat current_application.log | grep cu01 | awk '{sum += $4};END {print sum}')]
-cu02=$[72-$(cat current_application.log | grep cu02 | awk '{sum += $4};END {print sum}')]
-if (( $cu01 <= 0 && $cu02 <= 0 )); then
+cu01=$((72-$(cat current_application.log | grep cu01 | awk '{sum += $5};END {print sum}')))
+cu02=$((72-$(cat current_application.log | grep cu02 | awk '{sum += $5};END {print sum}')))
+if (( $cu01 <= 0 ))  && (( $cu02 <= 0 )); then
         echo "There is no spare core now, please try again later."
-elif (( $cu01 > 0 && $cu02 <= 0 )); then
+        exit
+elif (( $cu01 > 0 )) && (( $cu02 <= 0 )); then
         echo "Only cu01 has $cu01 spare core(s) now."
-elif (( $cu01 <= 0 && $cu02 > 0 )); then
+elif (( $cu01 <= 0 )) && (( $cu02 > 0 )); then
         echo "Only cu02 has $cu02 spare core(s) now."
 else
         echo -e "cu01 has $cu01 spare core(s). \ncu02 has $cu02 spare core(s)."
@@ -35,4 +36,4 @@ done
 echo -e "Account: \t$USER"
 echo -e "Applied: \t$coreNumber cores"
 echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
-#echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
+echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER $node $coreNumber" >> /home/coreApplication/current_application.log
