@@ -1,9 +1,9 @@
 #!/bin/bash
 echo "=== on cu01 ==="
 cat /home/coreApplication/current.log | grep cu01 | sort -k 3
-echo -e "--- $(cat /home/coreApplication/current.log | grep cu01 | awk '{sum+=$5};END {print 72-sum}') core(s) available on cu01. ---"
+echo -e "--- $(cat /home/coreApplication/current.log | grep cu01 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu01. ---"
 ssh cu01 "cpuAlert"
 echo "=== on cu02 ==="
 cat /home/coreApplication/current.log | grep cu02 | sort -k 3
-echo -e "--- $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum+=$5};END {print 72-sum}') core(s) available on cu02. ---"
+echo -e "--- $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ---"
 ssh cu02 "cpuAlert"
