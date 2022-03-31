@@ -1,4 +1,5 @@
 #!/bin/bash
 i=$(lastlog | grep $1 | awk '{print $1}')
 echo "User $i used the following commands:"
+cd /var/log/history/$i && ls -t | head -n 3
 cd /var/log/history/$i && ls -t | head -n 3 | xargs cat
