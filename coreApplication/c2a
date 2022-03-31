@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /home/coreApplication/application_history.log /home/coreApplication/current.log | awk '!x[$0]++' > /home/coreApplication/application_history.log
