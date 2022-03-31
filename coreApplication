@@ -11,23 +11,27 @@ else
         echo -e "cu01 has $cu01 spare core(s). \ncu02 has $cu02 spare core(s)."
 fi
 
-#while true
-#       read -p "Please enter node name[cu01/cu02]:" node
-#       read -p "please enter number of cores[default:10]:" coreNumber
-#       if [[ $node != "cu01" && $node != "cu02" ]]; then
-#               echo "Node name input error."
-#       elif [[ $node == "cu01" ]]; then
-#               if [[ $coreNumber <= $[72-$cu01] ]]; then
-#                       exit
-#               fi
-#       elif [[ $node == "cu02" ]]; then
-#               if [[ $coreNumber <= $[72-$cu02] ]]; then
-#                       exit
-#               fi
-#       esle
-#               echo "Number of cores input error."
-#       fi
-#echo -e "Account: \t$USER"
-#echo -e "Applied: \t$coreNumber cores"
-#echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
-##echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
+while true
+do
+        read -p "Please select node[cu01/cu02]:" node
+        read -p "please enter number of cores[default:10]:" coreNumber
+        if [[ $node != "cu01" && $node != "cu02" ]]; then
+                echo "Node name input error."
+        elif [[ $node == "cu01" ]]; then
+                if (( $coreNumber <= $cu01 )); then
+                        exit
+                else
+                        echo "Number of cores on $node input error."
+                fi
+        elif [[ $node == "cu02" ]]; then
+                if (( $coreNumber <= $cu02 )); then
+                        exit
+                else
+                        echo "Number of cores on $node input error."
+                fi
+        fi
+done
+echo -e "Account: \t$USER"
+echo -e "Applied: \t$coreNumber cores"
+echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
+#echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
