@@ -19,18 +19,19 @@ do
                 echo "Node name input error."
         elif [[ $node == "cu01" ]]; then
                 if (( $coreNumber <= $cu01 )); then
-                        exit
+                        break
                 else
                         echo "Number of cores on $node input error."
                 fi
         elif [[ $node == "cu02" ]]; then
                 if (( $coreNumber <= $cu02 )); then
-                        exit
+                        break
                 else
                         echo "Number of cores on $node input error."
                 fi
         fi
 done
+
 echo -e "Account: \t$USER"
 echo -e "Applied: \t$coreNumber cores"
 echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
