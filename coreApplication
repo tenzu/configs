@@ -1,0 +1,9 @@
+#!/bin/bash
+echo -e "Account: \t$USER"
+echo -e "Applied: \t10 cores"
+echo -e "Expire date: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
+#echo "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER 10" >> /home/cpuApplication/current_application.log
+cu01=$(cat current_application.log | grep cu01 | awk '{sum += $4};END {print sum}')
+cu02=$(cat current_application.log | grep cu02 | awk '{sum += $4};END {print sum}')
+echo "cu01 has $[72-$cu01] spare cores."
+echo "cu02 has $[72-$cu02] spare cores."
