@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "=== on cu01 ==="
-cat /home/coreApplication/current.log | grep cu01 | awk '{print $3 "\t" $4 "\t" $5 "\t" $1 "\t" $2}' | sort
+cat /home/coreApplication/current.log | grep cu01 | sort -k 3                   
 ssh cu01 "cpuAlert"
 echo "=== on cu02 ==="
-cat /home/coreApplication/current.log | grep cu02 | awk '{print $3 "\t" $4 "\t" $5 "\t" $1 "\t" $2}' | sort
+cat /home/coreApplication/current.log | grep cu02 | sort -k 3
 ssh cu02 "cpuAlert"
