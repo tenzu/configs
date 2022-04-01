@@ -3,7 +3,7 @@ totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
 userList=$(top -n 1 -b | awk '{print $2}' | sort | uniq)
 #userList=$(who | awk '{print $1}' | sort | uniq)
 echo -e "=== $(date) ==="
-#echo -e "--- $(top -n 1 -b | grep Cpu | awk '{print $8}') %CPU available. ---"
+echo -e "--- $(top -n 1 -b | grep Cpu | awk '{print $8}') %CPU available. ---"
 for user in $userList
 do
         cpuCores=$(top -n 1 -b | grep $user | awk '{if($9!="0.0") print $9}' | head -$totalCores | awk '{sum += $1};END {print sum/100}')
