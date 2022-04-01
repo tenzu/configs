@@ -1,10 +1,7 @@
 #!/bin/bash
-if [[ -n $(cat /home/coreApplication/current.log | awk '{print $3}' | grep $USER) ]]; then
-        echo "Your last application will expire at $(cat /home/coreApplication/current.log | grep $USER | awk '{print $2 " on " $1}')."
-        exit
-fi
 cu01=$((72-$(cat /home/coreApplication/current.log | grep cu01 | awk '{sum += $5};END {print sum}')))
 cu02=$((72-$(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print sum}')))
+
 if (( $cu01 <= 0 ))  && (( $cu02 <= 0 )); then
         echo "There is no spare core now, please try again later."
         exit
@@ -15,6 +12,12 @@ elif (( $cu01 <= 0 )) && (( $cu02 > 0 )); then
 else
         echo -e "cu01 has $cu01 spare core(s). \ncu02 has $cu02 spare core(s)."
 fi
+
+if [[ -n $(cat /home/coreApplication/current.log | awk '{print $3}' | grep $USER) ]]; then
+        echo "Your last application will expire at $(cat /home/coreApplication/current.log | grep $USER | awk '{print $2 " on " $1}')."
+        exit
+fi
+
 while true
 do
         read -p "Please select node[cu01/cu02]:" node
