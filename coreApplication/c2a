@@ -1,2 +1,4 @@
 #!/bin/bash
-cat /home/coreApplication/application_history.log /home/coreApplication/current.log | awk '!x[$0]++' > /home/coreApplication/application_history.log
+cat /home/coreApplication/current.log /home/coreApplication/application_history.log | sort | uniq > /home/coreApplication/tmp.log
+cp /home/coreApplication/tmp.log /home/coreApplication/application_history.log
+rm /home/coreApplication/tmp.log
