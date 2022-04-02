@@ -1,2 +1,1 @@
-1      *       *       *       *       sh /home/coreApplication/crLogClean
-2      *       *       *       *       cd /home/coreApplication  && sh /home/coreApplication/c2a
+1      *       *       *       *       cd /home/coreApplication && sh crLogClean && sh c2a
