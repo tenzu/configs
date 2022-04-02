@@ -41,5 +41,5 @@ done
 
 echo -e "Account: \t$USER"
 echo -e "Applied: \t$coreNumber cores"
-echo -e "Expire on: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago')"
+echo -e "Expire on: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-3 days ago')"
 echo -e "$(date +"%Y-%m-%d %H:%M:%S" -d '-7 days ago') $USER \t$node \t$coreNumber" >> /home/coreApplication/current.log
