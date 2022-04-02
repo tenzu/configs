@@ -22,6 +22,7 @@ while true
 do
         read -p "Please select node[cu01/cu02]:" node
         read -p "please enter number of cores[default:10]:" coreNumber
+        read -p "please enter day(s) of using[default:3]:" daysExpire
         if [[ $node != "cu01" && $node != "cu02" ]]; then
                 echo "Node name input error."
         elif [[ $node == "cu01" ]]; then
@@ -41,5 +42,5 @@ done
 
 echo -e "Account: \t$USER"
 echo -e "Applied: \t$coreNumber cores"
-echo -e "Expire on: \t$(date +"%Y-%m-%d %H:%M:%S" -d '-3 days ago')"
-echo -e "$(date +"%Y-%m-%d %H:%M:%S" -d '-3 days ago') $USER \t$node \t$coreNumber" >> /home/coreApplication/current.log
+echo -e "Expire on: \t$(date +"%Y-%m-%d %H:%M:%S" -d "-$daysExpire days ago")"
+echo -e "$(date +"%Y-%m-%d %H:%M:%S" -d "-$dyasExpire days ago") $USER \t$node \t$coreNumber" >> /home/coreApplication/current.log
