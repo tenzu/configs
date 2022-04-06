@@ -17,4 +17,4 @@ export HISTSIZE=4096
 DT=`date +"%Y%m%d_%H:%M:%S"`
 export HISTTIMEFORMAT="[$DT][${USER}][${USER_IP}]"
 export HISTFILE="/var/log/history/${LOGNAME}/${USER}@${USER_IP}_$DT"
-chmod 600 /var/log/history/${LOGNAME}/*history* 2>/dev/null
+#chmod 600 /var/log/history/${LOGNAME}/*history* 2>/dev/null
