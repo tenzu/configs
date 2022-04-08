@@ -1,3 +1,2 @@
 #!/bin/bash
-#ps -ef | grep $1 | grep -v grep | awk '{print "sudo kill "$2}' | sh
-sudo killall -u $(top -n 1 -b | grep $1 | awk '{print $2}' | uniq)
+ps -ef | grep $1 | cut -c 10-15 | xargs sudo kill -9
