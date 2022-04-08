@@ -18,7 +18,7 @@ if [[ -n $(cat /home/coreApplication/current.log | awk '{print $3}' | grep $USER
         exit
 fi
 
-echo "Press Ctrl+C to exit this script."
+echo "=== Press Ctrl+C to exit this script. ==="
 while true
 do
         read -p "Please select node[cu01/cu02]:" node
