@@ -18,14 +18,18 @@ if [[ -n $(cat /home/coreApplication/current.log | awk '{print $3}' | grep $USER
         exit
 fi
 
+echo "Press Ctrl+C to exit this script."
 while true
 do
         read -p "Please select node[cu01/cu02]:" node
-        read -p "please enter number of cores[default:10]:" coreNumber
-        read -p "please enter day(s) of using[default:3]:" daysExpire
         if [[ $node != "cu01" && $node != "cu02" ]]; then
                 echo "Node name input error."
-        elif [[ $node == "cu01" ]]; then
+                continue
+        fi
+        read -p "please enter number of cores[default:10]:" coreNumber
+        #read -p "please enter day(s) of using[default:3]:" daysExpire
+        daysExpire=4
+        if [[ $node == "cu01" ]]; then
                 if (( $coreNumber <= $cu01 )); then
                         break
                 else
