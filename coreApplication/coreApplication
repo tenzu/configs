@@ -31,12 +31,14 @@ do
         daysExpire=4
         if [[ $node == "cu01" ]]; then
                 if (( $coreNumber <= $cu01 )); then
+                        ssh $node "chmod 700 /data/$USER"
                         break
                 else
                         echo "Number of cores on $node input error."
                 fi
         elif [[ $node == "cu02" ]]; then
                 if (( $coreNumber <= $cu02 )); then
+                        ssh $node "chmod 700 /data/$USER"
                         break
                 else
                         echo "Number of cores on $node input error."
