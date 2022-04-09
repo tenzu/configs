@@ -1,5 +1,5 @@
 #!/bin/bash         
-i=${1-7}            
+i=${1:-7}            
 if [[ $# = 0 ]]; then
         echo "In last $i days, users below loginned:"
         lastlog -t $i | grep "[0-9]\{10\}" | sort
