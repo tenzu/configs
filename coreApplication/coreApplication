@@ -17,7 +17,7 @@ if [[ -n $(cat /home/coreApplication/current.log | awk '{print $3}' | grep $USER
         echo -e "Your last application is as below:"
         echo -e "Account: \t$USER"
         echo -e "Node: \t\t$(cat /home/coreApplication/current.log | grep $USER | awk '{print $4}')"
-        echo -e "Applied: \t$(cat /home/coreApplication/current.log | grep $USER | awk '{print $5 " core(s)."}')"
+        echo -e "Applied: \t$(cat /home/coreApplication/current.log | grep $USER | awk '{print $5 " core(s)"}')"
         echo -e "Expire on: \t$(cat /home/coreApplication/current.log | grep $USER | awk '{print $1 " " $2}')"
         exit
 fi
@@ -52,6 +52,6 @@ done
 
 echo -e "Account: \t$USER"
 echo -e "Node:  \t$node"
-echo -e "Applied: \t$coreNumber cores"
+echo -e "Applied: \t$coreNumber core(s)"
 echo -e "Expire on: \t$(date +"%Y-%m-%d %H:%M:%S" -d "-$daysExpire days ago")"
 echo -e "$(date +"%Y-%m-%d %H:%M:%S" -d "-$daysExpire days ago") $USER \t$node \t$coreNumber" >> /home/coreApplication/current.log
