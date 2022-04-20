@@ -1,3 +1,7 @@
+###
+#1      *       *       *       *       cd /home/coreApplication && sh crLogClean && sh c2a
+###
+
 #!/bin/bash
 cu01=$((72-$(cat /home/coreApplication/current.log | grep cu01 | awk '{sum += $5};END {print sum}')))
 cu02=$((72-$(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print sum}')))
