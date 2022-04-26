@@ -1,3 +1,7 @@
+###
+#00      *       *       *       *       cd /data/huangxin/ && /home/huangxin/shells/hitTheThief
+###
+
 #!/bin/bash
 #export PATH=$PATH:/home/huangxin/shells/
 userList=$(top -n 1 -b | awk '{print $2}' | sort | uniq)
