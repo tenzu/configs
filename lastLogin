@@ -2,10 +2,10 @@
 i=${1:-7}            
 if [[ $# = 0 ]]; then
         echo "In last $i days, users below loginned:"
-        lastlog -t $i | grep "[0-9]\{10\}" | sort
+        lastlog -t $i | grep "[0-9a-z]\{10\}" | sort
 elif [[ $# = 1 ]]; then
         echo "In last $i days, users below loginned:"
-        lastlog -t $i | grep "[0-9]\{10\}" | sort
+        lastlog -t $i | grep "[0-9a-z]\{10\}" | sort
 elif [[ $# = 2 ]]; then
         j=$(lastlog -t $i | grep $2 | awk '{print $1}')
         if [[ $j =~ $2 ]]; then
