@@ -1,19 +1,19 @@
 " General {{{
-set nocompatible
+" set nocompatible
 set number
 set nobackup
 set noswapfile
 set history=1024
-set autochdir
-set whichwrap=b,s,<,>,[,]
-set nobomb
+" set autochdir
+" set whichwrap=b,s,<,>,[,]
+" set nobomb
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 set clipboard+=unnamed
-set winaltkeys=no
+" set winaltkeys=no
 " }}}
-set guioptions-=r 
-set guioptions-=L
-set guioptions-=b
+" set guioptions-=r 
+" set guioptions-=L
+" set guioptions-=b
 " "隐藏顶部标签栏"
 set showtabline=0
 " "设置字体"
@@ -23,11 +23,11 @@ set background=dark        "设置背景色"
 colorscheme desert
 set nowrap    "设置不折行"
 " set fileformat=unix    "设置以unix的格式保存文件"
-set cindent        "设置C样式的缩进格式"
+" set cindent        "设置C样式的缩进格式"
 set tabstop=4    "设置table长度"
-set expandtab
+" set expandtab
 " set noexpandtab        "不允许扩展table"
-set shiftwidth=4        "同上"
+" set shiftwidth=4        "同上"
 set showmatch    "显示匹配的括号"
 set scrolloff=5        "距离顶部和底部5行"
 set laststatus=2    "命令行为两行"
@@ -38,7 +38,7 @@ set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
 set ignorecase        "忽略大小写"
-set incsearch
+" set incsearch
 set hlsearch        "高亮搜索项"
 set whichwrap+=<,>,h,l
 set autoread
