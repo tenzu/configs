@@ -33,7 +33,7 @@ set scrolloff=5        "距离顶部和底部5行"
 set laststatus=2    "命令行为两行"
 set fenc=utf-8      "文件编码"
 set backspace=2
-set mouse=a        "启用鼠标"
+" set mouse=a        "启用鼠标"
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
@@ -43,12 +43,12 @@ set hlsearch        "高亮搜索项"
 set whichwrap+=<,>,h,l
 set autoread
 set cursorline        "突出显示当前行"
-set cursorcolumn        "突出显示当前列"
-set syntax=apdl
+" set cursorcolumn        "突出显示当前列"
+" set syntax=apdl
 " Lang & Encoding {{{
 set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
 " set encoding=utf-8
-set langmenu=zh_CN
+" set langmenu=zh_CN
 let $LANG = 'en_US.UTF-8'
 " language messages zh_CN.UTF-8
 " }}}
