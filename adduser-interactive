@@ -1,0 +1,26 @@
+#!/bin/bash
+
+read -p "please input USER_NAME: " name
+#read -p "please input USER_HOME_DIR: " homedir
+homedir=/home/$name
+useradd -d $homedir -m $name
+read -p "please input USER_PASSWORD: " password
+echo "$password" | passwd --stdin $name
+cd /var/yp
+make
+su - $name << EOF
+ssh-keygen -t dsa -N "" -f "$homedir/.ssh/id_dsa"
+cp -r $homedir/.ssh/id_dsa.pub $homedir/.ssh/authorized_keys
+echo "StrictHostKeyChecking no" >> $homedir/.ssh/config
+chmod 600 $homedir/.ssh/config
+chmod 600 $homedir/.ssh/authorized_keys
+#mkdir $homedir/.vnc/
+#echo "$password" >> $homedir/.vnc/passwd
+#chmod 600 $homedir/.vnc/passwd
+#vncserver :9 -f $homedir/.vnc/passwd
+#vncserver -kill :9
+EOF
+
+# added by HX below
+usermod -g students $name
+groupdel $name
