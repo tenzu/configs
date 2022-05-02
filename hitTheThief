@@ -7,7 +7,7 @@
 userList=$(top -n 1 -b | awk '{print $2}' | sort | uniq)
 #userList=$(who | awk '{print $1}' | sort | uniq)
 totalCores=$(cat /proc/cpuinfo | grep "processor" | sort | uniq | wc -l)
-allowedCores=1024
+allowedCores=1
             
 function cpuAlert() {
         for user in $userList
