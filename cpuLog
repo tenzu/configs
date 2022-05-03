@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh ${1:-cu01} "cat /data/huangxin/hitTheThief.log" | tail -n ${2:-10} 
+ssh ${1:-cu01} "ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep ${2:-dyna}"
