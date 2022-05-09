@@ -1,2 +1,3 @@
 #!/bin/bash
-ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1
+#ssh ${1:-cu01} "ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep ${2:-dyna}"
+ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd
