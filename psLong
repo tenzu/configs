@@ -1,3 +1,10 @@
 #!/bin/bash
-#ssh ${1:-cu01} "ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep ${2:-dyna}"
-ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd
+if [[ $# = 0 ]]; then
+    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd
+elif [[ $# = 1 ]]; then
+    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep ${1:-dyna}
+elif [[ $# = 2 ]]; then                                                                                                                                                                                                                                                                                                                    
+    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1 | grep $2
+elif [[ $# = 3 ]]; then
+    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1 | grep $2 | grep $3
+fi
