@@ -2,9 +2,7 @@
 if [[ $# = 0 ]]; then
     ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd
 elif [[ $# = 1 ]]; then
-    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep ${1:-dyna}
+    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1
 elif [[ $# = 2 ]]; then                                                                                                                                                                                                                                                                                                                    
     ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1 | grep $2
-elif [[ $# = 3 ]]; then
-    ps -o ruser=userForLongName -e -o pid,ppid,c,stime,tty,time,cmd | grep $1 | grep $2 | grep $3
 fi
