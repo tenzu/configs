@@ -1,13 +1,18 @@
-#!/bin/bash                                                                     
+#!/bin/bash
 userList=$(cat /home/coreApplication/application_history.log | grep -v inspur | 
+nowSeconds=$(date +%s)
+echo "nowSeconds is $nowSeconds"
 for user in $userList
 do
-    #time=$(cat /home/coreApplication/application_history.log | grep $user | tai
+    echo "user is $user"
     time=$(cat /home/coreApplication/application_history.log | grep $user | tail
     echo $time
     node=$(cat /home/coreApplication/application_history.log | grep $user | tail
     echo $node
-    if  
-    ssh $node "chmod -R 500 /data/$user/"
-    fi  
+    pastSeconds=$(date +%s -d "$time")
+    echo "pastSeconds is $pastSeconds"
+    echo "nowSeconds- pastSeconds is $(($nowSeconds - $pastSeconds))"
+    #if  
+    #ssh $node "chmod -R 500 /data/$user/"
+    #fi  
 done
