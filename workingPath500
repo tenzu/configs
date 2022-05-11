@@ -1,0 +1,13 @@
+#!/bin/bash                                                                     
+userList=$(cat /home/coreApplication/application_history.log | grep -v inspur | 
+for user in $userList
+do
+    #time=$(cat /home/coreApplication/application_history.log | grep $user | tai
+    time=$(cat /home/coreApplication/application_history.log | grep $user | tail
+    echo $time
+    node=$(cat /home/coreApplication/application_history.log | grep $user | tail
+    echo $node
+    if  
+    ssh $node "chmod -R 500 /data/$user/"
+    fi  
+done
