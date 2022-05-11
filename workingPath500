@@ -1,13 +1,13 @@
 #!/bin/bash
-userList=$(cat /home/coreApplication/application_history.log | grep -v inspur | 
+userList=$(cat /home/coreApplication/application_history.log | grep -v inspur | cut -c 21-32 | sort | uniq)
 nowSeconds=$(date +%s)
-echo "nowSeconds is $nowSeconds"
+echo "nowSeconds is $nowSeconds"                                                                                                                                                                                                                                                                                                           
 for user in $userList
 do
     echo "user is $user"
-    time=$(cat /home/coreApplication/application_history.log | grep $user | tail
+    time=$(cat /home/coreApplication/application_history.log | grep $user | tail -n -1 | awk '{print $1, $2}')
     echo $time
-    node=$(cat /home/coreApplication/application_history.log | grep $user | tail
+    node=$(cat /home/coreApplication/application_history.log | grep $user | tail -n -1 | awk '{print $4}')
     echo $node
     pastSeconds=$(date +%s -d "$time")
     echo "pastSeconds is $pastSeconds"
