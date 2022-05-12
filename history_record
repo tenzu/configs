@@ -1,6 +1,6 @@
 # add below to /etc/profile and `source /etc/profile`
 # then remember to run: sudo chmod -R 777 /var/log/history/
-history
+#history
 USER=`whoami`
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
 if [ "$USER_IP" = "" ]; then
