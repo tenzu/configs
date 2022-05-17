@@ -9,12 +9,13 @@ do
     if [[ "$currentCu01" =~ "$i" ]]; then
         continue
     else
-        oldDate=$(cat /home/coreApplication/application_history.log | grep %i | tail -n -1 | awk '{print $1,$2}')
+        oldDate=$(cat /home/coreApplication/application_history.log | grep $i | tail -n -1 | awk '{print $1,$2}')
         oldTime=$(date -d "$oldDate" +%s)
         nowTime=$(date +%s)
-        echo "!!! $i expired $[$nowTime-$oldTime] second(s)!!!"
+        nowSeconds=$[$nowTime-$oldTime]
+        echo "!!! $i expired $[$nowSeconds/3600] hour(s) $[$nowSeconds%3600/60] minute(s)!!!"                                                                                     
     fi  
-done                                                                                                                                                                              
+done
 echo "++++++++++++++++"
 currentCu02=$(cat /home/coreApplication/current.log | grep cu02 | grep -v inspur | sort -k 3 | awk '{print $3}')
 echo -e "=== $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ==="
@@ -26,7 +27,11 @@ do
     if [[ "$currentCu02" =~ "$i" ]]; then
         continue
     else
-        echo "!!! $i expired !!!"
+        oldDate=$(cat /home/coreApplication/application_history.log | grep $i | tail -n -1 | awk '{print $1,$2}')
+        oldTime=$(date -d "$oldDate" +%s)
+        nowTime=$(date +%s)
+        nowSeconds=$[$nowTime-$oldTime]
+        echo "!!! $i expired $[$nowSeconds/3600] hour(s) $[$nowSeconds%3600/60] minute(s)!!!"
     fi  
 done
 echo "++++++++++++++++"
