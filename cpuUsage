@@ -1,7 +1,7 @@
 #!/bin/bash
 currentCu01=$(cat /home/coreApplication/current.log | grep cu01 | grep -v inspur | sort -k 3 | awk '{print $3}')
-echo -e "--- $(cat /home/coreApplication/current.log | grep cu01 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu01. ---"
-cat /home/coreApplication/current.log | grep cu01 | grep -v inspur | sort -k 3
+echo -e "=== $(cat /home/coreApplication/current.log | grep cu01 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu01. ==="
+cat /home/coreApplication/current.log | grep cu01 | grep -v inspur
 cpusCu01=$(ssh cu01 "cpuAlert" | awk '{print $1}')
 ssh cu01 "cpuAlert"
 for i in $cpusCu01
@@ -9,13 +9,16 @@ do
     if [[ "$currentCu01" =~ "$i" ]]; then
         continue
     else
-        echo "!!! $i expired !!!"
-    fi
-done
+        oldDate=$(cat /home/coreApplication/application_history.log | grep %i | tail -n -1 | awk '{print $1,$2}')
+        oldTime=$(date -d "$oldDate" +%s)
+        nowTime=$(date +%s)
+        echo "!!! $i expired $[$nowTime-$oldTime] second(s)!!!"
+    fi  
+done                                                                                                                                                                              
 echo "++++++++++++++++"
 currentCu02=$(cat /home/coreApplication/current.log | grep cu02 | grep -v inspur | sort -k 3 | awk '{print $3}')
-echo -e "--- $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ---"
-cat /home/coreApplication/current.log | grep cu02 | grep -v inspur | sort -k 3
+echo -e "=== $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ==="
+cat /home/coreApplication/current.log | grep cu02 | grep -v inspur
 cpusCu02=$(ssh cu02 "cpuAlert" | awk '{print $1}')
 ssh cu02 "cpuAlert"
 for i in $cpusCu02
@@ -24,14 +27,14 @@ do
         continue
     else
         echo "!!! $i expired !!!"
-    fi
+    fi  
 done
 echo "++++++++++++++++"
 #echo "=== on cu01 ==="
 #cat /home/coreApplication/current.log | grep cu01 | grep -v inspur | sort -k 3
-#echo -e "--- $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu01. ---"
+#echo -e "=== $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu01. ==="
 #ssh cu01 "cpuAlert"
 #echo "=== on cu02 ==="
 #cat /home/coreApplication/current.log | grep cu02 | grep -v inspur | sort -k 3
-#echo -e "--- $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ---"
+#echo -e "=== $(cat /home/coreApplication/current.log | grep cu02 | awk '{sum += $5};END {print 72-sum}') core(s) available on cu02. ==="
 #ssh cu02 "cpuAlert"
