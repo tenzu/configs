@@ -6,13 +6,11 @@ for i in $dirs; do
 	docxList=$(ls | grep docx | cut -c 1-10)
 	pdfList=$(ls | grep pdf | cut -c 1-10)
 	for i in $docxList; do
-	    #result=$(echo $pdfList | grep "$i")
-	    #if [ "$result" != "" ]; then
 		if [[ "$pdfList" =~ "$i" ]]; then
-	        echo "$i is OK!"
-	    else
-	        echo "$i is NOT OK!!!"
-	    fi
+			echo "$i is OK!"
+		else
+			echo "$i is NOT OK!!!"
+		fi
 	done
 	cd ..
 done
