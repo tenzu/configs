@@ -2,14 +2,14 @@
 dirs=$(ls -F | grep "/$")
 for i in $dirs; do
 	cd $i
-	echo $(pwd)
+	echo "in folder $i:"
 	docxList=$(ls | grep docx | cut -c 1-10)
 	pdfList=$(ls | grep pdf | cut -c 1-10)
-	for i in $docxList; do
-		if [[ "$pdfList" =~ "$i" ]]; then
-			echo "$i is OK!"
+	for j in $docxList; do
+		if [[ "$pdfList" =~ "$j" ]]; then
+			continue
 		else
-			echo "$i is NOT OK!!!"
+			echo "$j is NOT OK!!!"
 		fi
 	done
 	cd ..
