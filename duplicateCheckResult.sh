@@ -7,7 +7,8 @@ for i in $dirs; do
 	pdfList=$(ls | grep pdf | cut -c 1-10)
 	for j in $docxList; do
 		if [[ "$pdfList" =~ "$j" ]]; then
-			echo "$j passed."
+			#echo "$j passed."
+			continue
 		else
 			echo "$j is NOT OK!!!"
 		fi
