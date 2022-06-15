@@ -9,7 +9,7 @@ do
     pastSeconds=$(date +%s -d "$time")
     diffSeconds=$((nowSeconds-pastSeconds))
     if (( $diffSeconds > 86400 )); then
-        ssh $node "chmod 500 /data/$user/"                                                                                                                                                                                                                                                                                                 
+        ssh $node "chmod -R 500 /data/$user/"                                                                                                                                                                                                                                                                                                 
     else
         continue
     fi  
