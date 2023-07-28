@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 if [ $# -ne 1 ]; then
     echo "Please input path."
@@ -7,14 +7,12 @@ fi
 
 path=$1
 
-if [ ! -d $path ]; then
-    echo "Path does not exist."
-    exit 1
-fi
-
-for dir in $(find $path -maxdepth 1 -type d); do                         
-    if [ $dir != $path ]; then
-        size=$(du -sh $dir | awk '{print $1}')
-        echo -e "Size: $size\tFolder: $dir"
-    fi  
-done
+du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
+    if ($2 ~ /G$/) print $0;
+}' | sort -hr -k 2
+du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
+    if ($2 ~ /M$/) print $0;
+}' | sort -hr -k 2
+du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
+    if ($2 ~ /K$/) print $0;
+}' | sort -hr -k 2                         
