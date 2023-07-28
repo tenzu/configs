@@ -1,11 +1,20 @@
-#!/bin/bash         
-homeSize=$(du -sh /home)
-echo "The total /home size is:" ${homeSize:0:-6}
-userList=$(ls /home | sort)
-for user in $userList;
-        do          
-                folderSize=$(du -sh /home/$user/)
-                if [[ ${folderSize} =~ "G" ]]; then                             
-                        echo "The size is:" $folderSize
-                fi  
-        done
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Please input path."
+    exit 1
+fi
+
+path=$1
+
+if [ ! -d $path ]; then
+    echo "Path does not exist."
+    exit 1
+fi
+
+for dir in $(find $path -maxdepth 1 -type d); do                         
+    if [ $dir != $path ]; then
+        size=$(du -sh $dir | awk '{print $1}')
+        echo -e "Size: $size\tFolder: $dir"
+    fi  
+done
