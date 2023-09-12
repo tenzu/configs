@@ -1,21 +1,13 @@
- #!/bin/bash
+#!/bin/bash
 
-if [ $# -ne 1 ]; then
-    echo "Please input path."
-    exit 1
+if [ -z "$1" ]; then
+    echo "Please enter the path or press '0' to exit."
+    read -r path
+    if [ "$path" = "0" ]; then
+        exit 0
+    else
+        du -sh $path/*/ | sort -hr
+    fi
+else
+    du -sh $1/*/ | sort -hr
 fi
-
-path=$1
-
-du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
-    if ($2 ~ /T$/) print $0;
-}' | sort -hr -k 2
-du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
-    if ($2 ~ /G$/) print $0;
-}' | sort -hr -k 2
-du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
-    if ($2 ~ /M$/) print $0;
-}' | sort -hr -k 2
-du -sh ${path}/* | sort -hr | awk -F' ' '{printf "%s\t%s\n", $2, $1}' | awk -F'\t' '{
-    if ($2 ~ /K$/) print $0;
-}' | sort -hr -k 2                         
