@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cpuUsage
+
+# 使用 who 命令查看当前在线的用户，并将结果存储到变量中
+online_users=$(who | awk '{print $1}')
+
+# 打印在线用户列表
+echo "在线用户: $online_users"
+
+# 提示用户输入要杀死进程的用户名
+echo "请输入要杀死进程的用户名："
+read username
+
+# 使用 killall 命令杀死特定用户的所有进程
+killall -u $username
+
+# 检查 killall 命令的退出状态码
+if [ $? -eq 0 ]; then
+    echo "成功杀死用户 $username 的所有进程。"
+else
+    echo "杀死用户 $username 的进程时出现错误。"
+fi
